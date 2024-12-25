@@ -25,3 +25,8 @@ variable "postgres_db" {
   description = "PostgreSQL database name"
   default     = "postgresdb"
 }
+
+variable "github_pages_domain_verification_token" {
+  type        = string
+  description = "GitHub Pages domain verification token"
+}
