@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:17.2
+    image: postgres:17.2-alpine
     container_name: postgres
     restart: always
     env_file:
@@ -11,7 +11,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgresuser}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB:-postgresdb}
-      POSTGRES_INITDB_ARGS: "--lc-collate=ko_KR.utf8"
+      LANG: ko_KR.utf8
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=ko-KR"
     ports:
       - "5432:5432"
     volumes:

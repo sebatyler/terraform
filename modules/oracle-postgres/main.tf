@@ -22,7 +22,7 @@ resource "oci_core_instance" "postgres_instance" {
   metadata = {
     ssh_authorized_keys = file(var.ssh_public_key_path)
     user_data = base64encode(templatefile("${path.module}/templates/cloud-init.yaml", {
-      docker_compose_content = file("${path.module}/files/docker-compose.yml")
+      docker_compose_content = base64encode(file("${path.module}/files/docker-compose.yml"))
       postgres_user          = var.postgres_user
       postgres_password      = var.postgres_password
       postgres_db            = var.postgres_db

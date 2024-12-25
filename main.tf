@@ -30,3 +30,11 @@ module "oracle_postgres" {
   postgres_password = var.postgres_password
   postgres_db       = var.postgres_db
 }
+
+resource "aws_route53_record" "postgres" {
+  zone_id = data.aws_route53_zone.seba-kim.zone_id
+  name    = "postgres.seba.kim"
+  type    = "A"
+  ttl     = 300
+  records = [module.oracle_postgres.instance_public_ip]
+}
